@@ -1,0 +1,29 @@
+<nav class="navbar navbar-light bg-light">
+  <form class="form-inline">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+  <span class="user-info">&nbsp; Welcome User</span>
+</nav>
+<div class="content-area">
+<div id="accordion">
+  <div class="card" *ngFor="let depData of departments; index as i">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link" data-toggle="collapse" [attr.data-target]="'#collapseOne' + i" aria-expanded="true" aria-controls="collapseOne">
+          {{depData.title}}
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapseOne{{i}}" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+        {{depData.text}}
+      </div>
+      <a href="" routerLink="/department-details" routerLinkActive="active" class="viewDeatils">view details >></a>
+    </div>
+  </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

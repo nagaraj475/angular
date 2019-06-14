@@ -1,0 +1,41 @@
+<nav class="navbar navbar-light bg-light">
+  <form class="form-inline">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+  <span class="user-info">&nbsp; Welcome User</span>
+</nav>
+<div class="content-area department-content">
+    <h2>Department Details <button class="btn btn-success edit" (click)="edit=true">Edit</button></h2>
+    
+    <form #departmentForm="ngForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label class="label-header" for="name">Name:&nbsp;</label>
+        <input *ngIf="edit" type="text" class="form-control" id="name" [(ngModel)]="departmentDetails.name" name="name">
+        <label *ngIf="!edit">{{departmentDetails.name}}</label>
+      </div>
+  
+      <div class="form-group">
+        <label class="label-header" for="age">Age:&nbsp;</label>
+        <input *ngIf="edit" type="text" class="form-control" id="age" [(ngModel)]="departmentDetails.age" name="age">
+        <label *ngIf="!edit">{{departmentDetails.age}}</label>
+      </div>
+  
+      <div class="form-group">
+        <label class="label-header" for="nationality">Nationality:&nbsp;</label>
+        <select *ngIf="edit" class="form-control" id="nationality" [(ngModel)]="departmentDetails.nationality" name="nationality">
+          <option *ngFor="let nationality of nationalities" [value]="nationality">{{nationality}}</option>
+        </select>
+        <label *ngIf="!edit">{{departmentDetails.nationality}}</label>
+      </div>
+
+    <h2>Course details</h2>
+    <div class="form-group" *ngFor="let course of courses; index as i">
+      <input *ngIf="edit" type="text" class="form-control courseName" id="course-{{i}}" [(ngModel)]="course.name" name="course-name">
+      <label *ngIf="!edit">{{course.name}}&nbsp;-----&nbsp;</label>
+      <label *ngIf="!edit">{{course.ratting}}</label>
+      <input *ngIf="edit" type="text" class="form-control ratting" id="ratting-{{i}}" [(ngModel)]="course.ratting" name="course-ratting">
+    </div>
+    <button *ngIf="edit" type="submit" (click)="edit=false" class="btn btn-success submit">Submit</button>
+  </form>
+</div>

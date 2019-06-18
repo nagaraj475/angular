@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {NeedAuthGuard} from './shared/auth.guard';
 import { DepartmentDetailsComponent } from './department-details/department-details.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,11 @@ const routes: Routes = [
   {
     path: 'department-details',
     component: DepartmentDetailsComponent,
+    canActivate: [NeedAuthGuard]
+  },
+  {
+    path: 'user-profile',
+    component: UserProfileComponent,
     canActivate: [NeedAuthGuard]
   },
   { path: '**', component: DashboardComponent, canActivate: [NeedAuthGuard] }
